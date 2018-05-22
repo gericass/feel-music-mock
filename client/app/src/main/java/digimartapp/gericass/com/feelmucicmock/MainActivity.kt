@@ -2,6 +2,8 @@ package digimartapp.gericass.com.feelmucicmock
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.LinearLayout
+import digimartapp.gericass.com.feelmucicmock.constants.MAINFRAGMENT
 
 class MainActivity : AppCompatActivity(), MainNavigator {
 
@@ -12,8 +14,13 @@ class MainActivity : AppCompatActivity(), MainNavigator {
         setContentView(R.layout.activity_main)
 
         val mainFragment = MainFragment()
-        mMainViewModel = MainViewModel(this)
+        mMainViewModel = MainViewModel(this, applicationContext)
         mainFragment.mViewmodel = mMainViewModel
+
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_fragment_container, mainFragment)
+        transaction.commit()
 
     }
 
