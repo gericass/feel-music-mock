@@ -18,14 +18,20 @@ class MainViewModel(private var mMainNavigator: MainNavigator?,
             notifyPropertyChanged(BR.sensors)
         }
 
+    @Bindable
+    var sensorValue: String? = null
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.sensorValue)
+        }
+
     fun onActivityDestroyed() {
         mMainNavigator = null
     }
 
-    fun getSensor() {
-        if (mMainNavigator != null) {
-            mMainNavigator?.getSensor()
-        }
+    fun onActivityResumed() {
+        mMainNavigator?.getActiveSensor()
     }
+
 
 }

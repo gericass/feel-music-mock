@@ -6,4 +6,5 @@ package digimartapp.gericass.com.feelmucicmock
 
 interface MainNavigator {
     fun getSensor()
+    fun getActiveSensor()
 }

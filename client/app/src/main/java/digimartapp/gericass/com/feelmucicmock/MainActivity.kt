@@ -33,10 +33,15 @@ import android.hardware.Sensor.TYPE_GAME_ROTATION_VECTOR
 import android.hardware.Sensor.TYPE_DEVICE_PRIVATE_BASE
 import android.hardware.Sensor.TYPE_AMBIENT_TEMPERATURE
 import android.hardware.Sensor.TYPE_ACCELEROMETER
+import android.hardware.SensorEventListener
 import android.widget.TextView
+import android.support.v4.view.ViewCompat.setAlpha
+import android.databinding.adapters.TextViewBindingAdapter.setText
+import android.hardware.SensorEvent
+import android.widget.Toast
 
 
-class MainActivity : AppCompatActivity(), MainNavigator {
+class MainActivity : AppCompatActivity(), MainNavigator, SensorEventListener {
 
     private lateinit var mMainViewModel: MainViewModel
 
@@ -84,34 +89,40 @@ class MainActivity : AppCompatActivity(), MainNavigator {
 
 
     override fun onResume() {
+        mMainViewModel.onActivityResumed()
         super.onResume()
-
-        val flg = true
-        // 表示の切り替え
-        if (flg) {
-            // 端末で使用できるセンサーを表示
-            getSensor()
-        } else {
-            // センサーリストから使用可能かどうかの表示
-            checkSensorsEach()
-        }
     }
 
 
-    private fun checkSensorsEach() {
+    override fun getActiveSensor() {
         val strbuf = StringBuffer("Sensor List:\n\n")
 
         for (i in sensorList.indices) {
-            val sensor = sensorManager!!.getDefaultSensor(sensorList[i])
+            val sensor = sensorManager?.getDefaultSensor(sensorList[i])
 
             if (sensor != null) {
                 val strTmp = String.format("%s: %s: 使用可能\n",
                         (i + 1).toString(), sensorNameList[i])
+                sensorManager?.registerListener(this, sensor, sensorList[i])
                 strbuf.append(strTmp)
             } else {
                 val strTmp = String.format("%s: %s: XXX 不可\n",
                         (i + 1).toString(), sensorNameList[i])
                 strbuf.append(strTmp)
+            }
+        }
+        mMainViewModel.sensors = strbuf
+    }
+
+    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {}
+
+    override fun onSensorChanged(event: SensorEvent) {
+        when (event.sensor.type) {
+            Sensor.TYPE_LIGHT -> {
+                // 現在の明るさを取得
+                val lightValue = event.values[0].toString()
+                Toast.makeText(this,lightValue,Toast.LENGTH_SHORT).show()
+                mMainViewModel.sensorValue = lightValue
             }
         }
     }
