@@ -1,5 +1,7 @@
 package digimartapp.gericass.com.feelmucicmock
 
+import android.content.Context
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -11,12 +13,26 @@ import android.view.MenuItem
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 
-class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNavigationItemSelectedListener {
+
+    private lateinit var mMainViewModel: MainViewModel
+
+    private var sensorManager: SensorManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         setSupportActionBar(toolbar)
+
+        val mainFragment = MainFragment()
+        mMainViewModel = MainViewModel(this, applicationContext)
+        mainFragment.mViewmodel = mMainViewModel
+
+        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.main_fragment_container, mainFragment)
+        transaction.commit()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -80,5 +96,11 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun getSensor() {
+    }
+
+    override fun getActiveSensor() {
     }
 }
