@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity(), MainNavigator, SensorEventListener {
             Sensor.TYPE_LIGHT -> {
                 // 現在の明るさを取得
                 val lightValue = event.values[0].toString()
-                Toast.makeText(this,lightValue,Toast.LENGTH_SHORT).show()
+
                 mMainViewModel.sensorValue = lightValue
             }
         }
