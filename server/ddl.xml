@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
+<!-- Active URL: http://ondras.zarovi.cz/sql/demo/?keyword=default -->
+<sql>
+<datatypes db="mysql">
+    <group color="rgb(238,238,170)" label="Numeric">
+        <type label="Integer" quote="" sql="INTEGER" length="0"/>
+         <type label="TINYINT" quote="" sql="TINYINT" length="0"/>
+         <type label="SMALLINT" quote="" sql="SMALLINT" length="0"/>
+         <type label="MEDIUMINT" quote="" sql="MEDIUMINT" length="0"/>
+         <type label="INT" quote="" sql="INT" length="0"/>
+        <type label="BIGINT" quote="" sql="BIGINT" length="0"/>
+        <type label="Decimal" quote="" sql="DECIMAL" length="1" re="DEC"/>
+        <type label="Single precision" quote="" sql="FLOAT" length="0"/>
+        <type label="Double precision" quote="" sql="DOUBLE" length="0" re="DOUBLE"/>
+    </group>
+
+    <group color="rgb(255,200,200)" label="Character">
+        <type label="Char" quote="'" sql="CHAR" length="1"/>
+        <type label="Varchar" quote="'" sql="VARCHAR" length="1"/>
+        <type label="Text" quote="'" sql="MEDIUMTEXT" length="0" re="TEXT"/>
+        <type label="Binary" quote="'" sql="BINARY" length="1"/>
+        <type label="Varbinary" quote="'" sql="VARBINARY" length="1"/>
+        <type label="BLOB" quote="'" sql="BLOB" length="0" re="BLOB"/>
+    </group>
+
+    <group color="rgb(200,255,200)" label="Date &amp; Time">
+        <type label="Date" quote="'" sql="DATE" length="0"/>
+        <type label="Time" quote="'" sql="TIME" length="0"/>
+        <type label="Datetime" quote="'" sql="DATETIME" length="0"/>
+        <type label="Year" quote="" sql="YEAR" length="0"/>
+        <type label="Timestamp" quote="'" sql="TIMESTAMP" length="0"/>
+    </group>
+    
+    <group color="rgb(200,200,255)" label="Miscellaneous">
+        <type label="ENUM" quote="" sql="ENUM" length="1"/>
+        <type label="SET" quote="" sql="SET" length="1"/>
+        <type label="Bit" quote="" sql="bit" length="0"/>
+    </group>
+</datatypes><table x="606" y="292" name="users">
+<row name="id" null="1" autoincrement="1">
+<datatype>BIGINT</datatype>
+<default>NULL</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="password" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="salt" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="email" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="sporify_id" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="comment" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>ユーザーテーブル</comment>
+</table>
+<table x="977" y="678" name="users_tracks">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="track_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tracks" row="id" />
+</row>
+<row name="created_at" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+<comment>ユーザーライブラリ（曲）</comment>
+</table>
+<table x="1455" y="213" name="tracks">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="artist_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="artists" row="id" />
+</row>
+<row name="spotify_id" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="player_url" null="0" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>'NULL'</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="992" y="436" name="map">
+<row name="id" null="1" autoincrement="1">
+<datatype>BIGINT</datatype>
+<default>NULL</default></row>
+<row name="lat" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="lng" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="track_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tracks" row="id" />
+</row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="comment" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="458" y="519" name="locations">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="lat" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="lng" null="0" autoincrement="0">
+<datatype>DECIMAL</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="867" y="822" name="users_tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="tag_id" null="0" autoincrement="0">
+<datatype>INT</datatype>
+<default>NULL</default><relation table="tags" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>TIMESTAMP</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1425" y="564" name="tracks_tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="track_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tracks" row="id" />
+</row>
+<row name="tag_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tags" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1186" y="857" name="tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="583" y="770" name="follows">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="following_user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="follower_user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1798" y="843" name="albums">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="artist_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="artists" row="id" />
+</row>
+<row name="spotify_id" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="release_date" null="1" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>NULL</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1492" y="917" name="albums_tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="album_id" null="1" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="albums" row="id" />
+</row>
+<row name="tag_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tags" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1793" y="516" name="artists">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="spotify_id" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="name" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1570" y="737" name="artists_tags">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="artist_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="artists" row="id" />
+</row>
+<row name="tag_id" null="0" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="tags" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="1046" y="295" name="users_artists">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="artist_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="artists" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="896" y="76" name="recommends">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="send_user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="receive_user_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="users" row="id" />
+</row>
+<row name="track_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tracks" row="id" />
+</row>
+<row name="status" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="comment" null="0" autoincrement="0">
+<datatype>VARCHAR</datatype>
+<default>'NULL'</default></row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<row name="updated_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+<table x="2067" y="451" name="tracks_albums">
+<row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="track_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="tracks" row="id" />
+</row>
+<row name="album_id" null="0" autoincrement="0">
+<datatype>BIGINT</datatype>
+<default>NULL</default><relation table="albums" row="id" />
+</row>
+<row name="created_at" null="0" autoincrement="0">
+<datatype>DATETIME</datatype>
+<default>'NULL'</default></row>
+<key type="PRIMARY" name="">
+<part>id</part>
+</key>
+</table>
+</sql>
