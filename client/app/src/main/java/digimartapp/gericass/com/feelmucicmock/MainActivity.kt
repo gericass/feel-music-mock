@@ -103,4 +103,14 @@ class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNaviga
 
     override fun getActiveSensor() {
     }
+
+    override fun onResume() {
+        mMainViewModel.onActivityResumed()
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        mMainViewModel.onActivityDestroyed()
+        super.onDestroy()
+    }
 }
