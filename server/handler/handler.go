@@ -28,3 +28,9 @@ func CallbackHandler(c echo.Context) error {
 func PlaylistHandler(c echo.Context) error {
 	return nil
 }
+
+func FlickTrackHandler(c echo.Context) error {
+
+
+	return nil
+}

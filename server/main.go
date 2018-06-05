@@ -34,6 +34,7 @@ func main() {
 
 	e.Use(middleware.Logger())
 
+	e.POST("/track", handler.FlickTrackHandler)
 	e.GET("/playlist", handler.PlaylistHandler)
 	e.GET("/auth", handler.AuthHandler)
 	e.GET("/callback/", handler.CallbackHandler)
