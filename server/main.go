@@ -34,8 +34,15 @@ func main() {
 
 	e.Use(middleware.Logger())
 
-	e.POST("/track", handler.FlickTrackHandler)
-	e.GET("/playlist", handler.PlaylistHandler)
+	// フリック共有
+	e.POST("/flick/track", handler.PostFlickTrackHandler)
+	e.GET("flick/track", handler.GetFlickTrackHandler)
+
+	// スポットミュージック
+	e.POST("/map/track", handler.PlotTracksMapHandler)
+	e.GET("/map/track", handler.GetTracksFromMapHandler)
+
+	// Spotify API 認証
 	e.GET("/auth", handler.AuthHandler)
 	e.GET("/callback/", handler.CallbackHandler)
 
