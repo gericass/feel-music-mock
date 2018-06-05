@@ -7,15 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import digimartapp.gericass.com.feelmucicmock.databinding.FragmentMainBinding
-import android.content.Context
-import android.net.Uri
 
 class MainFragment : Fragment() {
 
     var mViewmodel: MainViewModel? = null
-
-    var mMainNavigator: MainNavigator? = null
-
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
