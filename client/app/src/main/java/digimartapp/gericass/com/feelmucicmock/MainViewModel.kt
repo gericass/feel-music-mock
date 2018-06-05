@@ -1,15 +1,15 @@
 package digimartapp.gericass.com.feelmucicmock
 
-import android.content.Context
 import android.databinding.BaseObservable
 import android.databinding.Bindable
+import javax.inject.Inject
 
 /**
  * Created by keita on 2018/05/21.
  */
 
-class MainViewModel(private var mMainNavigator: MainNavigator?,
-                    private val mContext: Context) : BaseObservable() {
+
+class MainViewModel(private var mMainNavigator: MainNavigator?) : BaseObservable() {
 
     @Bindable
     var sensors: StringBuffer? = null
