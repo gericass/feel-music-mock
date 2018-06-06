@@ -25,6 +25,18 @@ func CallbackHandler(c echo.Context) error {
 	return c.String(http.StatusOK, "Authentication success")
 }
 
-func PlaylistHandler(c echo.Context) error {
+func PlotTracksMapHandler(c echo.Context) error {
+	return nil
+}
+
+func GetTracksFromMapHandler(c echo.Context) error {
+	return nil
+}
+
+func PostFlickTrackHandler(c echo.Context) error {
+	return nil
+}
+
+func GetFlickTrackHandler(c echo.Context) error {
 	return nil
 }

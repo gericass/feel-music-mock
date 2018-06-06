@@ -1,0 +1,49 @@
+CREATE TABLE tracks (
+  id          BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  spotify_url TEXT     NOT NULL,
+  created_at  DATETIME NOT NULL           DEFAULT CURRENT_TIMESTAMP,
+);
+
+CREATE TABLE maps (
+  id         BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  lat        DOUBLE(9, 6) NOT NULL,
+  lng        DOUBLE(9, 6) NOT NULL,
+  created_at DATETIME     NOT NULL       DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE locations (
+  id         BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  lat        DOUBLE(9, 6) NOT NULL,
+  lng        DOUBLE(9, 6) NOT NULL,
+  created_at DATETIME     NOT NULL       DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users (
+  id         BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  name       VARCHAR(256) NOT NULL,
+  created_at DATETIME     NOT NULL       DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE tracks_locations (-- recommend
+  id          BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  track_id    BIGINT   NOT NULL,
+  location_id BIGINT   NOT NULL,
+  created_at  DATETIME NOT NULL           DEFAULT CURRENT_TIMESTAMP,
+  expired_at  DATETIME NOT NULL
+);
+
+CREATE TABLE user_locations (
+  id         BIGINT UNSIGNED PRIMARY KEY  AUTO_INCREMENT,
+  user_id    BIGINT       NOT NULL,
+  lat        DOUBLE(9, 6) NOT NULL,
+  lng        DOUBLE(9, 6) NOT NULL,
+  updated_at DATETIME     NOT NULL        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+CREATE TABLE maps_tracks (
+  id         BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+  track_id   BIGINT   NOT NULL,
+  map_id     BIGINT   NOT NULL,
+  created_at DATETIME NOT NULL           DEFAULT CURRENT_TIMESTAMP,
+  expired_at DATETIME NOT NULL
+);
