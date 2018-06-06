@@ -50,7 +50,7 @@ func GetMaps(db *sql.DB) ([]*Map, error) {
 }
 
 func GetLastMapID(db *sql.DB) (int64, error) {
-	var id int
+	var id int64
 	rows, err := db.Query("SELECT max(id) FROM `maps`")
 	if err != nil {
 		return 0, err

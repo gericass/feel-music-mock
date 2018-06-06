@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: 'go run /go/src/app/main.go'
+    expose:
+      - "5000"
+    links:
+      - mysql:db
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_DATABASE: battari
+    volumes:
+            - "./sql:/docker-entrypoint-initdb.d"
+    ports:
+      - "23306:3306"
