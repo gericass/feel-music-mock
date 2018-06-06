@@ -31,19 +31,31 @@ func (t *Track) PutTrack(db *sql.DB) error {
 	})
 }
 
-func GetTracks(db *sql.DB) ([]*Track, error) {
-	tracks := make([]*Track, 0)
-	rows, err := db.Query("SELECT `id`, `spotify_id`, `created_at` FROM `tracks`")
+func (t *Track) GetTrackByID(db *sql.DB) (*Track, error) {
+	stmt, err := db.Prepare("SELECT `id`, `spotify_id`, `created_at` FROM `tracks` WHERE `id` = ?")
 	if err != nil {
 		return nil, err
 	}
+	track := &Track{}
+	err = stmt.QueryRow(stmt, t.ID).Scan(&track.ID, &track.SpotifyID, &track.CreatedAt)
+	if err != nil {
+		return nil, err
+	}
+	return track, nil
+}
+
+func GetLastTrackID(db *sql.DB) (int64, error) {
+	var id int64
+	rows, err := db.Query("SELECT max(id) FROM `tracks`")
+	if err != nil {
+		return 0, err
+	}
 	defer rows.Close()
 	for rows.Next() {
-		track := &Track{}
-		if err := rows.Scan(&track.ID, &track.SpotifyID, &track.CreatedAt); err != nil {
-			return nil, err
+		if err := rows.Scan(&id); err != nil {
+			return 0, err
 		}
-		tracks = append(tracks, track)
+
 	}
-	return tracks, nil
+	return id, nil
 }
