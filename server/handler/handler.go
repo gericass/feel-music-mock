@@ -4,6 +4,8 @@ import (
 	"github.com/labstack/echo"
 	"github.com/gericass/gotify"
 	"net/http"
+	"github.com/gericass/feel-music-mock/server/handler/model"
+	"github.com/gericass/feel-music-mock/server/flick"
 )
 
 var Auth gotify.OAuth
@@ -34,7 +36,18 @@ func GetTracksFromMapHandler(c echo.Context) error {
 }
 
 func PostFlickTrackHandler(c echo.Context) error {
-	return nil
+	cc := c.(*CustomContext)
+	u := new(model.Flick)
+	err := c.Bind(u)
+	if err != nil {
+		return err
+	}
+	track := &flick.Track{SpotifyID: u.SpotifyID, Location: flick.Location{Lat: u.Location.Lat, Lng: u.Location.Lng}}
+	err = track.PostFlickMusic(cc.DB)
+	if err != nil {
+		return err
+	}
+	return c.String(200, "Track received")
 }
 
 func GetFlickTrackHandler(c echo.Context) error {
