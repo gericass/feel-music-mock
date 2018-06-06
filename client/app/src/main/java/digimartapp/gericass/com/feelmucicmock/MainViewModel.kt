@@ -9,7 +9,7 @@ import javax.inject.Inject
  */
 
 
-class MainViewModel(private var mMainNavigator: MainNavigator?) : BaseObservable() {
+class MainViewModel @Inject constructor(private var mMainNavigator: MainNavigator?) : BaseObservable() {
 
     @Bindable
     var sensors: StringBuffer? = null

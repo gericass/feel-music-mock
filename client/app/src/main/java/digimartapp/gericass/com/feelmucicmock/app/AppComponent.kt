@@ -4,6 +4,7 @@ import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
+import digimartapp.gericass.com.feelmucicmock.MainModule
 import javax.inject.Singleton
 
 /**
@@ -11,7 +12,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class, AndroidModule::class))
+@Component(modules = arrayOf(AndroidInjectionModule::class, AndroidModule::class, MainModule::class))
 interface AppComponent : AndroidInjector<App> {
     @Component.Builder
     interface Builder {

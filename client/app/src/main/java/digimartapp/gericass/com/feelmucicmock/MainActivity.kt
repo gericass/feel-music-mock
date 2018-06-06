@@ -17,6 +17,7 @@ import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNavigationItemSelectedListener {
 
+    @Inject
     lateinit var mMainViewModel: MainViewModel
 
     private var sensorManager: SensorManager? = null
