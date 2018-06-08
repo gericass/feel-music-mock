@@ -6,7 +6,7 @@ import (
 )
 
 func ConnectDB() (*sql.DB, error) {
-	db, err := sql.Open("mysql", "root:mysql@tcp(127.0.0.1:13306)/battari?parseTime=true")
+	db, err := sql.Open("mysql", "root:mysql@tcp(db:3306)/battari?parseTime=true")
 	if err != nil {
 		return nil, err
 	}
