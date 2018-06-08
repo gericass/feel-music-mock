@@ -5,8 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
     command: 'go run /go/src/app/main.go'
-    expose:
-      - "5000"
+    ports:
+      - "50000:5000"
     links:
       - mysql:db
 
