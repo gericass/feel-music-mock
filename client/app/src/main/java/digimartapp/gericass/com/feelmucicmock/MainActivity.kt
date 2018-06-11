@@ -13,11 +13,10 @@ import android.view.MenuItem
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
-import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNavigationItemSelectedListener {
 
-    @Inject
     lateinit var mMainViewModel: MainViewModel
 
     private var sensorManager: SensorManager? = null
@@ -30,6 +29,7 @@ class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNaviga
 
 
         val mainFragment = MainFragment()
+        mMainViewModel = MainViewModel(this)
         mainFragment.mViewmodel = mMainViewModel
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager

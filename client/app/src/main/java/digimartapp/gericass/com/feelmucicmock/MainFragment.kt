@@ -12,10 +12,9 @@ class MainFragment : Fragment() {
 
     var mViewmodel: MainViewModel? = null
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val view = inflater!!.inflate(R.layout.fragment_main, container, false)
+        val view = inflater.inflate(R.layout.fragment_main, container, false)
         val viewDataBinding = FragmentMainBinding.bind(view)
         viewDataBinding.viewmodel = mViewmodel
         return view
@@ -23,5 +22,6 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 }

@@ -15,17 +15,23 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/sensor_text"
+        <com.yuyakaido.android.cardstackview.CardStackView
+            android:id="@+id/activity_main_card_stack_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="@{viewmodel.sensors}" />
-
-        <TextView
-            android:id="@+id/sensor_result"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@{viewmodel.sensorValue}" />
+            android:clipToPadding="false"
+            android:paddingBottom="32dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="32dp"
+            app:elevationEnabled="true"
+            app:scaleDiff="0.02"
+            app:stackFrom="top"
+            app:swipeDirection="freedom_no_bottom"
+            app:swipeEnabled="true"
+            app:swipeThreshold="0.75"
+            app:translationDiff="12"
+            app:visibleCount="3" />
 
     </LinearLayout>
 
