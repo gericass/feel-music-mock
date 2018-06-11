@@ -10,16 +10,16 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import com.squareup.moshi.Moshi
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var mMainViewModel: MainViewModel
-
-    private var sensorManager: SensorManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNaviga
         mMainViewModel = MainViewModel(this)
         mainFragment.mViewmodel = mMainViewModel
 
-        sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.main_fragment_container, mainFragment)

@@ -8,7 +8,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.SwipeDirection
 import digimartapp.gericass.com.feelmucicmock.Track.Track
@@ -31,10 +30,6 @@ class MainFragment : Fragment() {
         setup()
         reload()
         return view
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     private fun setup() {
@@ -74,6 +69,10 @@ class MainFragment : Fragment() {
         tracks.add(Track("Shlohmo - Dark Red", "https://images-na.ssl-images-amazon.com/images/I/91iU%2BZG1uvL._SY355_.jpg", "dope"))
         tracks.add(Track("Clark - Clark", "https://images-na.ssl-images-amazon.com/images/I/81bG%2BeD2U5L._SY355_.jpg", "金属っぽくて最高"))
         tracks.add(Track("Lapalux - Ruinism", "http://www.indienative.com/wp-content/uploads/2017/04/600x600bb-2.jpg", "悪すぎる"))
+        tracks.add(Track("ichika - forn", "https://images-fe.ssl-images-amazon.com/images/I/61EciT7R69L._SS500.jpg", "クリーン綺麗すぎ"))
+        tracks.add(Track("坂本龍一 - async", "https://images-na.ssl-images-amazon.com/images/I/81TaA20kFAL._SX355_.jpg", "脳に直接くる"))
+        tracks.add(Track("Cerrone - Red Lips", "https://d38fgd7fmrcuct.cloudfront.net/1_3kgkijvpsbn8lgowsjq9l.jpg", "リリースしてから音沙汰ねえな"))
+        tracks.add(Track("フィロソフィーのダンス - ザ・ファウンダー", "https://images-na.ssl-images-amazon.com/images/I/A16pzKFRLaL._SY355_.jpg", "アイドルファンク最高ォ〜"))
         return tracks
     }
 

@@ -5,6 +5,7 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import digimartapp.gericass.com.feelmucicmock.MainModule
+import digimartapp.gericass.com.feelmucicmock.api.ApiModule
 import javax.inject.Singleton
 
 /**
@@ -12,7 +13,7 @@ import javax.inject.Singleton
  */
 
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class, AndroidModule::class, MainModule::class))
+@Component(modules = arrayOf(AndroidInjectionModule::class, AndroidModule::class, MainModule::class, ApiModule::class))
 interface AppComponent : AndroidInjector<App> {
     @Component.Builder
     interface Builder {
