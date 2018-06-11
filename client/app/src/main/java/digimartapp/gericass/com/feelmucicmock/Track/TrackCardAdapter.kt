@@ -2,8 +2,6 @@ package digimartapp.gericass.com.feelmucicmock.Track
 
 import android.content.Context
 import android.widget.TextView
-import android.databinding.adapters.TextViewBindingAdapter.setText
-import android.support.design.widget.CoordinatorLayout.Behavior.setTag
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
