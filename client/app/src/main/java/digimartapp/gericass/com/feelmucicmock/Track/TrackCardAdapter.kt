@@ -1,4 +1,4 @@
-package digimartapp.gericass.com.feelmucicmock.Track
+package digimartapp.gericass.com.feelmucicmock.track
 
 import android.content.Context
 import android.widget.TextView

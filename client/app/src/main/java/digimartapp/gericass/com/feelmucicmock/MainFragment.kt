@@ -1,6 +1,7 @@
 package digimartapp.gericass.com.feelmucicmock
 
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.app.Fragment
@@ -8,18 +9,33 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.SwipeDirection
-import digimartapp.gericass.com.feelmucicmock.Track.Track
-import digimartapp.gericass.com.feelmucicmock.Track.TrackCardAdapter
+import dagger.android.support.AndroidSupportInjection
+import digimartapp.gericass.com.feelmucicmock.api.TrackClient
+import digimartapp.gericass.com.feelmucicmock.track.Track
+import digimartapp.gericass.com.feelmucicmock.track.TrackCardAdapter
 import digimartapp.gericass.com.feelmucicmock.databinding.FragmentMainBinding
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import retrofit2.Retrofit
 import java.util.ArrayList
+import javax.inject.Inject
 
 class MainFragment : Fragment() {
+
+    @Inject lateinit var retrofit: Retrofit
 
     var mViewmodel: MainViewModel? = null
     lateinit var cardStackView: CardStackView
     lateinit var cardAdapter: TrackCardAdapter
+
+    override fun onAttach(context: Context?) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -62,7 +78,7 @@ class MainFragment : Fragment() {
     }
 
     private fun createTouristSpots(): List<Track> {
-        val tracks = ArrayList<Track>()
+        var tracks = ArrayList<Track>()
         tracks.add(Track("Paramore - Riot!", "https://images-na.ssl-images-amazon.com/images/I/91b6aYwjwjL._SL1425_.jpg", "エモい"))
         tracks.add(Track("Nirvana - Nevermind", "https://images-na.ssl-images-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg", "カートコバーンカッコ良い"))
         tracks.add(Track("kz(livetune) feat. Hatsune Miku - Tell Your World", "https://images-na.ssl-images-amazon.com/images/I/61Fp-iEmc2L.jpg", "kz天才だなあ"))
@@ -73,6 +89,16 @@ class MainFragment : Fragment() {
         tracks.add(Track("坂本龍一 - async", "https://images-na.ssl-images-amazon.com/images/I/81TaA20kFAL._SX355_.jpg", "脳に直接くる"))
         tracks.add(Track("Cerrone - Red Lips", "https://d38fgd7fmrcuct.cloudfront.net/1_3kgkijvpsbn8lgowsjq9l.jpg", "リリースしてから音沙汰ねえな"))
         tracks.add(Track("フィロソフィーのダンス - ザ・ファウンダー", "https://images-na.ssl-images-amazon.com/images/I/A16pzKFRLaL._SY355_.jpg", "アイドルファンク最高ォ〜"))
+
+        val client = retrofit.create(TrackClient::class.java)
+        client.getFlickTrack()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    tracks.add(it)
+                }, {
+                    Toast.makeText(activity, "timeout", Toast.LENGTH_SHORT).show()
+                })
         return tracks
     }
 

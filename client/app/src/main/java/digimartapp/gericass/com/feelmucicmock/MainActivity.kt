@@ -1,5 +1,6 @@
 package digimartapp.gericass.com.feelmucicmock
 
+import android.app.Fragment
 import android.content.Context
 import android.hardware.SensorManager
 import android.os.Bundle
@@ -12,6 +13,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.squareup.moshi.Moshi
 import dagger.android.AndroidInjection
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_home.*
 import javax.inject.Inject
@@ -26,6 +30,7 @@ class MainActivity : AppCompatActivity(), MainNavigator, NavigationView.OnNaviga
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+
 
 
         val mainFragment = MainFragment()
