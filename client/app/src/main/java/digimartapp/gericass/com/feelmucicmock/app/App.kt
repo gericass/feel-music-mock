@@ -17,7 +17,8 @@ import javax.inject.Inject
 class App : DaggerApplication(), HasSupportFragmentInjector {
 
 
-    override fun applicationInjector() = DaggerAppComponent.builder()
+    override fun applicationInjector() = DaggerAppComponent
+            .builder()
             .application(this)
             .build()
 

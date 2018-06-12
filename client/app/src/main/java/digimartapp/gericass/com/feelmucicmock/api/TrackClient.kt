@@ -1,5 +1,6 @@
 package digimartapp.gericass.com.feelmucicmock.api
 
+import digimartapp.gericass.com.feelmucicmock.constants.GET_FLICK_TRACK
 import digimartapp.gericass.com.feelmucicmock.track.Track
 import retrofit2.http.GET
 import io.reactivex.Observable
@@ -10,6 +11,6 @@ import io.reactivex.Observable
  */
 
 interface TrackClient {
-    @GET("flick/track")
+    @GET(GET_FLICK_TRACK)
     fun getFlickTrack(): Observable<Track>
 }
