@@ -22,8 +22,7 @@ class App : DaggerApplication(), HasSupportFragmentInjector {
             .build()
 
     @Inject
-    lateinit var androidInjector: DispatchingAndroidInjector<Fragment>
+    lateinit var androidInjector: DispatchingAndroidInjector<android.support.v4.app.Fragment>
 
-    @Suppress("UNCHECKED_CAST")
-    override fun supportFragmentInjector() = androidInjector as AndroidInjector<android.support.v4.app.Fragment>
+    override fun supportFragmentInjector() = androidInjector
 }
