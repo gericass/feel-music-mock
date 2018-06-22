@@ -78,7 +78,7 @@ class MainFragment : Fragment() {
     }
 
     private fun createTouristSpots(): List<Track> {
-        var tracks = ArrayList<Track>()
+        val tracks = ArrayList<Track>()
         tracks.add(Track("Paramore - Riot!", "https://images-na.ssl-images-amazon.com/images/I/91b6aYwjwjL._SL1425_.jpg", "エモい"))
         tracks.add(Track("Nirvana - Nevermind", "https://images-na.ssl-images-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg", "カートコバーンカッコ良い"))
         tracks.add(Track("kz(livetune) feat. Hatsune Miku - Tell Your World", "https://images-na.ssl-images-amazon.com/images/I/61Fp-iEmc2L.jpg", "kz天才だなあ"))
