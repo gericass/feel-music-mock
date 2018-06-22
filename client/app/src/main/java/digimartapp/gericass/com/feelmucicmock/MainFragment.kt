@@ -25,7 +25,8 @@ import javax.inject.Inject
 
 class MainFragment : Fragment() {
 
-    @Inject lateinit var retrofit: Retrofit
+    @Inject
+    lateinit var retrofit: Retrofit
 
     var mViewmodel: MainViewModel? = null
     lateinit var cardStackView: CardStackView
@@ -77,7 +78,7 @@ class MainFragment : Fragment() {
         })
     }
 
-    private fun createTouristSpots(): List<Track> {
+    private fun createTracks(): List<Track> {
         val tracks = ArrayList<Track>()
         tracks.add(Track("Paramore - Riot!", "https://images-na.ssl-images-amazon.com/images/I/91b6aYwjwjL._SL1425_.jpg", "エモい"))
         tracks.add(Track("Nirvana - Nevermind", "https://images-na.ssl-images-amazon.com/images/I/71DQrKpImPL._SL1400_.jpg", "カートコバーンカッコ良い"))
@@ -104,13 +105,13 @@ class MainFragment : Fragment() {
 
     private fun createTouristSpotCardAdapter(): TrackCardAdapter {
         val adapter = TrackCardAdapter(activity!!.applicationContext)
-        adapter.addAll(createTouristSpots())
+        adapter.addAll(createTracks())
         return adapter
     }
 
     private fun paginate() {
         cardStackView.setPaginationReserved()
-        cardAdapter.addAll(createTouristSpots())
+        cardAdapter.addAll(createTracks())
         cardAdapter.notifyDataSetChanged()
     }
 
