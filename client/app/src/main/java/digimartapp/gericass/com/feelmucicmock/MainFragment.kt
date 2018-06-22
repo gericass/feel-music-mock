@@ -103,7 +103,7 @@ class MainFragment : Fragment() {
         return tracks
     }
 
-    private fun createTouristSpotCardAdapter(): TrackCardAdapter {
+    private fun createTrackAdapter(): TrackCardAdapter {
         val adapter = TrackCardAdapter(activity!!.applicationContext)
         adapter.addAll(createTracks())
         return adapter
@@ -118,7 +118,7 @@ class MainFragment : Fragment() {
     private fun reload() {
         cardStackView.visibility = View.GONE
         Handler().postDelayed({
-            cardAdapter = createTouristSpotCardAdapter()
+            cardAdapter = createTrackAdapter()
             cardStackView.setAdapter(cardAdapter)
             cardStackView.visibility = View.VISIBLE
         }, 1000)
