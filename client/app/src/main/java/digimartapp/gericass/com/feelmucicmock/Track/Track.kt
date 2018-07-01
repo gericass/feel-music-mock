@@ -7,4 +7,5 @@ import java.io.Serializable
  */
 data class Track(var name: String,
                  var url: String,
-                 var comment: String) : Serializable
+                 var comment: String,
+                 var spotifyID: String) : Serializable
